@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="ui container">
+		<h1 class="ui header">Créer un nouvel utilisateur</h1>
+
+		{{ form_start(form) }}
+		<div class="ui equal width form">
+			<div class="fields">
+				<div class="field">
+					{{ form_label(form.email) }}
+					<div class="ui input">{{ form_widget(form.email) }}</div>
+				</div>
+				<div class="field">
+					{{ form_label(form.password) }}
+					<div class="ui input">{{ form_widget(form.password) }}</div>
+				</div>
+				<div class="field">
+					{{ form_label(form.roles) }}
+					<div class="ui input">{{ form_widget(form.roles) }}</div>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="ui primary button right floated">Enregistrer</button>
+	{{ form_end(form) }}
+	</div>
+	<br>
+	<br>
+	<br>
+	<hr>
+	<a href="{{ path('utilisateur_index') }}" class="ui button">Retour à la liste</a>
+</div>
+{% endblock %}

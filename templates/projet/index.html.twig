@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des projets
+{% endblock %}
+
+{% block body %}
+	<div class="ui justify container">
+		<h1 class="ui header">Liste des projets</h1>
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th>Titre</th>
+					<th>Description</th>
+					<th>Montant Objectif</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for projet in projets %}
+					<tr>
+						<td>{{ projet.titre }}</td>
+						<td>{{ projet.description }}</td>
+						<td>{{ projet.montantObjectif }}</td>
+						<td>
+							{# <a href="{{ path('projet_show', {id: projet.id}) }}" class="ui button">Voir</a>
+													                    <a href="{{ path('projet_edit', {id: projet.id}) }}" class="ui button">Modifier</a> #}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5">Aucun projet trouvé.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="ui green labeled icon button">
+			<i class="add icon"></i>
+			<a href="{{ path('projet_new') }}" style="ui button">Créer un nouveau projet</a>
+		</div>
+	</div>
+{% endblock %}

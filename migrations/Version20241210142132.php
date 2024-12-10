@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20241210102304 extends AbstractMigration
+final class Version20241210142132 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,16 +20,14 @@ final class Version20241210102304 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE projet ADD createur_id INT NOT NULL');
-        $this->addSql('ALTER TABLE projet ADD CONSTRAINT FK_50159CA973A201E5 FOREIGN KEY (createur_id) REFERENCES utilisateur (id)');
-        $this->addSql('CREATE INDEX IDX_50159CA973A201E5 ON projet (createur_id)');
+        $this->addSql('ALTER TABLE utilisateur ADD roles JSON NOT NULL, DROP role, CHANGE email email VARCHAR(180) NOT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_1D1C63B3E7927C74 ON utilisateur (email)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE projet DROP FOREIGN KEY FK_50159CA973A201E5');
-        $this->addSql('DROP INDEX IDX_50159CA973A201E5 ON projet');
-        $this->addSql('ALTER TABLE projet DROP createur_id');
+        $this->addSql('DROP INDEX UNIQ_1D1C63B3E7927C74 ON utilisateur');
+        $this->addSql('ALTER TABLE utilisateur ADD role VARCHAR(255) NOT NULL, DROP roles, CHANGE email email VARCHAR(255) DEFAULT NULL');
     }
 }

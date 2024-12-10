@@ -23,10 +23,10 @@ class Projet
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
-    private ?string $montantObjectif = null;
+    private ?string $montantObjectif;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0)]
-    private ?string $montantActuel = null;
+    #[ORM\Column(type: Types::DECIMAL, scale: 2, options: ["default" => '0.00'])]
+    private ?string $montantActuel = '0.00';
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateLimite = null;
