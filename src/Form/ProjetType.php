@@ -32,13 +32,13 @@ class ProjetType extends AbstractType
           'widget' => 'single_text', 
         'html5' => false,          
         'attr' => ['class' => 'ui calendar date-input'], 
-    ])
-            ->add('statut')
-            ->add('createur', EntityType::class, [
-                'class' => Utilisateur::class,
-                'choice_label' => 'id',
-            ])
-        ;
+      ])
+      ->add('statut')
+      ->add('createur', EntityType::class, [
+          'class' => Utilisateur::class,
+          'choice_label' => 'id',
+      ])
+      ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

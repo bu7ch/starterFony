@@ -27,13 +27,19 @@
 				</div>
 			</div>
 		</div>
+		{{ form_row(form.statut) }}
+		{{ form_row(form.createur) }}
 
-
-		{{ form_end(form) }}
 		<br>
 		<button type="submit" class="ui primary button right floated">Enregistrer</button>
+		{{ form_end(form) }}
+		<br>
 
 	</div>
+	<br>
+	<br>
+	<br>
+	<hr>
 	<script>
 		$('#calendar-date').calendar({
 type: 'datetime',
@@ -59,5 +65,4 @@ date.getMonth() + 1
 }
 });
 	</script>
-
 {% endblock %}

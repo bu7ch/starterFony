@@ -7,6 +7,7 @@
 		<thead>
 			<tr>
 				<th>Email</th>
+        <th>Role</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -14,6 +15,7 @@
 			{% for user in utilisateurs %}
 				<tr>
 					<td>{{ user.email }}</td>
+					<td>{{ user.formattedRoles }}</td>
 					<td>
 						<a href="{{ path('user_show', {'id': user.id}) }}" class="ui blue button">Voir</a>
 						<a href="{{ path('user_edit', {'id': user.id}) }}" class="ui yellow button">Modifier</a>

@@ -66,7 +66,7 @@ class UtilisateurController extends AbstractController
       return $this->redirectToRoute('user_show', ['id' => $user->getId()]);
     }
 
-    return $this->render('user/edit.html.twig', [
+    return $this->render('utilisateur/edit.html.twig', [
       'form' => $form->createView(),
       'user' => $user,
     ]);
@@ -74,12 +74,12 @@ class UtilisateurController extends AbstractController
 
   #[Route("/user/{id}/delete", name: "user_delete")]
   public function delete(Request $request, Utilisateur $user, EntityManagerInterface $em): Response
-  {
+   {
     if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
       $em->remove($user);
       $em->flush();
     }
 
-    return $this->redirectToRoute('user_index');
-  }
+    return $this->redirectToRoute('utilisateur_index');
+   }
 }
