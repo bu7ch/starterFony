@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="ui header">Créer un nouveau projet</h1>
+
+	{{ form_start(form, {'attr': {'class': 'ui form'}}) }}
+
+	{{ form_row(form.titre) }}
+	{{ form_row(form.description) }}
+	{{ form_row(form.montantObjectif) }}
+
+	<div class="ui calendar" id="calendar-date">
+		<div class="ui input left icon">
+			<i class="calendar icon"></i>
+			{{ form_widget(form.dateLimite, {'attr': {'placeholder': 'Sélectionnez une date'}}) }}
+		</div>
+	</div>
+
+	<button type="submit" class="ui primary button">Enregistrer</button>
+
+	{{ form_end(form) }}
+
+	<a href="{{ path('projet_index') }}" class="ui button">Retour à la liste</a>
+
+	<script>
+    $('#calendar-date').calendar({
+        type: 'datetime', 
+        formatter: {
+            datetime: function (date) {
+                if (!date) return '';
+                return date.getFullYear() + '-' +
+                    ('0' + (date.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + date.getDate()).slice(-2) + ' ' +
+                    ('0' + date.getHours()).slice(-2) + ':' +
+                    ('0' + date.getMinutes()).slice(-2);
+            }
+        }
+    });
+</script>
+{% endblock %}
