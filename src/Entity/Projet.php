@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,21 @@ class Projet
 
     #[ORM\Column(length: 255)]
     private ?string $statut = null;
+
+    #[ORM\ManyToOne(inversedBy: 'projets')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $createur = null;
+
+    /**
+     * @var Collection<int, Contribution>
+     */
+    #[ORM\OneToMany(targetEntity: Contribution::class, mappedBy: 'projet')]
+    private Collection $contributions;
+
+    public function __construct()
+    {
+        $this->contributions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +122,48 @@ class Projet
     public function setStatut(string $statut): static
     {
         $this->statut = $statut;
+
+        return $this;
+    }
+
+    public function getCreateur(): ?Utilisateur
+    {
+        return $this->createur;
+    }
+
+    public function setCreateur(?Utilisateur $createur): static
+    {
+        $this->createur = $createur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contribution>
+     */
+    public function getContributions(): Collection
+    {
+        return $this->contributions;
+    }
+
+    public function addContribution(Contribution $contribution): static
+    {
+        if (!$this->contributions->contains($contribution)) {
+            $this->contributions->add($contribution);
+            $contribution->setProjet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContribution(Contribution $contribution): static
+    {
+        if ($this->contributions->removeElement($contribution)) {
+            // set the owning side to null (unless already changed)
+            if ($contribution->getProjet() === $this) {
+                $contribution->setProjet(null);
+            }
+        }
 
         return $this;
     }
