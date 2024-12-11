@@ -16,8 +16,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProjetController extends AbstractController
 {
   #[Route('/', name: 'projet_index')]
-  public function index(ProjetRepository $projetRepository): Response
+  public function index(ProjetRepository $projetRepository, EntityManagerInterface $em): Response
   {
+    $em->clear();
     return $this->render('projet/index.html.twig', [
       'projets' => $projetRepository->findAll(),
     ]);

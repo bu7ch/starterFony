@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contribution;
+use App\Entity\Projet;
 use App\Form\ContributionType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ContributionRepository;
@@ -32,9 +33,10 @@ class ContributionController extends AbstractController
 
     if ($form->isSubmitted() && $form->isValid()) {
       $projet = $contribution->getProjet();
-      $em->persist($contribution);
 
-      $projet->updateMontantActuel();
+      $nouveauMontant = $projet->getMontantActuel() + $contribution->getMontant();
+      $projet->setMontantActuel($nouveauMontant);
+      $em->persist($contribution);
       $em->flush();
 
       $this->addFlash('success', 'Contribution ajoutée avec succès.');

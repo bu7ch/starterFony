@@ -12,6 +12,7 @@
 					<th>Titre</th>
 					<th>Description</th>
 					<th>Montant Objectif</th>
+					<th>etat de la campagne</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -21,6 +22,14 @@
 						<td>{{ projet.titre }}</td>
 						<td>{{ projet.description }}</td>
 						<td>{{ projet.montantObjectif }}</td>
+						<td>
+							<div class="extra">
+								<div class="ui indicating progress" data-value="{{ projet.montantActuel }}" data-total="{{ projet.montantObjectif }}">
+									<div class="bar" style="width: {{ projet.getPourcentageRecolte() }}%;"></div>
+									<div class="label">{{ projet.getPourcentageRecolte() }}% collectés</div>
+								</div>
+							</div>
+						</td>
 						<td>
 							<a href="{{ path('projet_show', {id: projet.id}) }}" class="ui button">Voir</a>
 							<a href="{{ path('projet_edit', {id: projet.id}) }}" class="ui button">Modifier</a>
@@ -38,4 +47,7 @@
 			<a href="{{ path('projet_new') }}" style="ui button">Créer un nouveau projet</a>
 		</div>
 	</div>
+  <script>
+    $('.ui.progress').progress();
+</script>
 {% endblock %}
