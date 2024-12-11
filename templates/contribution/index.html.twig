@@ -18,12 +18,12 @@
                 {% for contribution in contributions %}
                     <tr>
                         <td>{{ contribution.montant }}</td>
-                        <td>{{ contribution.projet }}</td>
+                        <td>{{ contribution.projet.titre }}</td>
                         <td>
-                            <a href="{{ path('contribution_edit', {'id': contribution.id}) }}" class="ui button">Modifier</a>
-                            <form action="{{ path('contribution_delete', {'id': contribution.id}) }}" method="post" style="display:inline;">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contribution.id) }}">
-                                <button type="submit" class="ui red button">Supprimer</button>
+                            {# <a href="{{ path('contribution_edit', {'id': contribution.id}) }}" class="ui button">Modifier</a> #}
+                            {# <form action="{{ path('contribution_delete', {'id': contribution.id}) }}" method="post" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contribution.id) }}"> #}
+                                {# <button type="submit" class="ui red button">Supprimer</button> #}
                             </form>
                         </td>
                     </tr>

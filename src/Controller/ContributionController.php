@@ -31,7 +31,10 @@ class ContributionController extends AbstractController
     $form->handleRequest($request);
 
     if ($form->isSubmitted() && $form->isValid()) {
+      $projet = $contribution->getProjet();
       $em->persist($contribution);
+
+      $projet->updateMontantActuel();
       $em->flush();
 
       $this->addFlash('success', 'Contribution ajoutée avec succès.');

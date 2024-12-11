@@ -167,4 +167,14 @@ class Projet
 
         return $this;
     }
+    public function updateMontantActuel(): void
+{
+    $totalContributions = 0;
+
+    foreach ($this->getContributions() as $contribution) {
+        $totalContributions += $contribution->getMontant();
+    }
+
+    $this->montantActuel = $totalContributions;
+}
 }

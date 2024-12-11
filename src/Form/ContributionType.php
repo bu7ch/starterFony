@@ -29,6 +29,8 @@ class ContributionType extends AbstractType
       ->add('projet', EntityType::class, [
         'class' => Projet::class,
         'choice_label' => 'titre',
+        'label' => 'Projet',
+        'placeholder' => 'Sélectionnez un projet'
       ])
     ;
   }

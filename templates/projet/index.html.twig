@@ -22,8 +22,8 @@
 						<td>{{ projet.description }}</td>
 						<td>{{ projet.montantObjectif }}</td>
 						<td>
-							{# <a href="{{ path('projet_show', {id: projet.id}) }}" class="ui button">Voir</a>
-													                    <a href="{{ path('projet_edit', {id: projet.id}) }}" class="ui button">Modifier</a> #}
+							<a href="{{ path('projet_show', {id: projet.id}) }}" class="ui button">Voir</a>
+							<a href="{{ path('projet_edit', {id: projet.id}) }}" class="ui button">Modifier</a>
 						</td>
 					</tr>
 				{% else %}
