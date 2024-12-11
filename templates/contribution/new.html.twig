@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une nouvelle contribution
+{% endblock %}
+
+{% block body %}
+	<div class="ui container">
+		<h1 class="ui header">Ajouter une nouvelle contribution</h1>
+
+		<div class="ui segment">
+			{{ form_start(form, { 'attr': { 'class': 'ui form' } }) }}
+
+			<div class="field">
+				{{ form_label(form.montant) }}
+				{{ form_widget(form.montant, { 'attr': { 'placeholder': 'Entrez le montant de la contribution' } }) }}
+				{{ form_errors(form.montant) }}
+			</div>
+
+			<div class="field">
+				{{ form_label(form.projet) }}
+				{{ form_widget(form.projet, { 'attr': { 'placeholder': 'Entrez le nom du projet' } }) }}
+				{{ form_errors(form.projet) }}
+			</div>
+			<div class="field">
+            <label for="{{ form.date.vars.id }}">Date :</label>
+            <div class="ui calendar" id="calendar-date">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    {{ form_widget(form.date, { 'attr': { 'placeholder': 'Sélectionnez une date' } }) }}
+                </div>
+            </div>
+            {{ form_errors(form.date) }}
+        </div>
+			{{ form_row(form.utilisateur) }}
+
+			<div class="ui right aligned">
+				<button type="submit" class="ui primary button">Enregistrer</button>
+			</div>
+
+			{{ form_end(form) }}
+		</div>
+	</div>
+		<script>
+    $('#calendar-date').calendar({
+    type: 'datetime',
+    formatter: {
+    datetime: function (date) {
+    if (! date) 
+    return '';
+
+
+
+    return date.getFullYear() + '-' + (
+    '0' + (
+    date.getMonth() + 1
+    )
+    ).slice(-2) + '-' + (
+    '0' + date.getDate()
+    ).slice(-2) + ' ' + (
+    '0' + date.getHours()
+    ).slice(-2) + ':' + (
+    '0' + date.getMinutes()
+    ).slice(-2);
+    }
+    }
+    });
+	</script>
+{% endblock %}

@@ -36,7 +36,7 @@ class ProjetType extends AbstractType
       ->add('statut')
       ->add('createur', EntityType::class, [
           'class' => Utilisateur::class,
-          'choice_label' => 'id',
+          'choice_label' => 'email',
       ])
       ;
     }

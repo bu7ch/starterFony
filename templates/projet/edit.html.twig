@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le Projet
+{% endblock %}
+
+{% block body %}
+	<div class="ui container">
+		<h1 class="ui header">Modifier le Projet</h1>
+
+		<div class="ui segment">
+			{{ form_start(form, { 'attr': { 'class': 'ui form' } }) }}
+
+			{{ form_row(form.titre, { 'label': 'Nom du Projet' }) }}
+			{{ form_row(form.description, { 'label': 'Description' }) }}
+			{{ form_row(form.montantObjectif, { 'label': 'Montant Objectif' }) }}
+			<div class="field">
+				<label>Date Limite</label>
+				<div class="ui calendar" id="calendar-debut">
+					<div class="ui input left icon">
+						<i class="calendar icon"></i>
+						{{ form_widget(form.dateLimite) }}
+					</div>
+				</div>
+			</div>
+			{{ form_row(form.statut) }}
+			{{ form_row(form.createur) }}
+<br>
+<br>
+			<button class="ui primary button" type="submit">Enregistrer</button>
+			<a href="{{ path('projet_index') }}" class="ui button">Retour à la liste</a>
+
+			{{ form_end(form) }}
+		</div>
+	</div>
+
+	<script>
+		$('#calendar-debut').calendar({
+type: 'date',
+formatter: {
+date: function (date) {
+return date ? date.toISOString().split('T')[0] : '';
+}
+}
+});
+$('#calendar-fin').calendar({
+type: 'date',
+formatter: {
+date: function (date) {
+return date ? date.toISOString().split('T')[0] : '';
+}
+}
+});
+	</script>
+{% endblock %}
